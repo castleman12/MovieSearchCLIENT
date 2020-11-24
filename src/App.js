@@ -1,24 +1,18 @@
-
+import {Switch, Route} from 'react'
+import Home from './components/Pages/Home'
 import './App.css';
+import {useState} from 'react';
 
 
 function App() {
+  const [Search, setSearch] = useState('')
+
   return (
     <div className="App">
-      <header className="App-header">
-  
-        <p>
-          Edit <code>src/App.js</code>boopo reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+
+    <Home/>
+
+
     </div>
   );
 }
