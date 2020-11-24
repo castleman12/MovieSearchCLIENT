@@ -12,7 +12,6 @@ function App() {
 
     <Home/>
 
-
     </div>
   );
 }
