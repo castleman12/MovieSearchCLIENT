@@ -1,19 +1,25 @@
-import React, {useState} from 'react';
+import {React, useState} from 'react';
 import {Button, Form, FormGroup, Label, Input, Modal, ModalHeader, ModalBody} from 'reactstrap';
 
-return (   
+
+const Auth = (props) => {
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
+
+
+
+  return (   
     <Modal isOpen={true}>
-    <ModalHeader>{title()}</ModalHeader>
+    <ModalHeader></ModalHeader>
        <ModalBody>          
-           <form onSubmit={handleSubmit}> 
+           <form > 
              <label htmlFor="email">Email:</label>    
              <input 
                  type="text" 
                  id="email" 
                  value={email} 
                  placeholder="email@email.com" 
-                 onChange={(event) => {
-                 
+                 onChange={(event) => {                 
                  setEmail(event.target.value);  
                  }} 
              /> 
@@ -22,15 +28,17 @@ return (
                  type="password" 
                  id="password" 
                  value={password} 
-                 //placeholder="password" 
                  onChange={(event) => {
-                 //console.log(event) 
                  setPassword(event.target.value);
                  }} 
              /> 
-             <button onClick={loginToggle}>Login/Signup Toggle</button>
-             <button type="submit">Submit User Data</button>
-           </form>  
+             <Button onClick={props.authOff}>close button for now lol</Button>
+             <Button type="submit">Submit User Data</Button>
+           </form>
        </ModalBody>
     </Modal>
   )
+}
+
+
+export default Auth;
