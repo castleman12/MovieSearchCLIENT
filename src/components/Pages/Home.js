@@ -1,9 +1,19 @@
 import {useState} from 'react';
 import SearchResults from './SearchResults'
 import {Jumbotron, Container, Form, InputGroup, InputGroupAddon, InputGroupText, Input, Button} from 'reactstrap'
+
 const Home = (props) => {
 
+  const [authActive, authActive] = useState(false);
 
+
+  const authOn = () =>{
+    setAuthActive(true);
+  }
+
+  const authOff = () => {
+    setAuthActive(false);
+  }
     
 
         return (
@@ -20,8 +30,9 @@ const Home = (props) => {
              </InputGroup>
                 </Form>
                 <br />
-            <Button>Login</Button>
-            <Button>Sign Up</Button>
+            <Button onClick={() => {authOn()}}>Login or Sign Up!</Button>
+            {authActive ? <Auth  authOff={authOff} /> : null}
+
             <Button>Watchlist</Button>
               </Container>
             </Jumbotron>
