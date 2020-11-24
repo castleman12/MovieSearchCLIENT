@@ -1,10 +1,12 @@
 import {useState} from 'react';
 import SearchResults from './SearchResults'
 import {Jumbotron, Container, Form, InputGroup, InputGroupAddon, InputGroupText, Input, Button} from 'reactstrap'
+import Auth from '../Auth/Auth'
+
 
 const Home = (props) => {
 
-  const [authActive, authActive] = useState(false);
+  const [authActive, setAuthActive] = useState(false);
 
 
   const authOn = () =>{
