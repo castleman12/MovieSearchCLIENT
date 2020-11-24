@@ -5,7 +5,7 @@ import {useState} from 'react';
 
 
 function App() {
-  const [Search, setSearch] = useState('')
+  const [search, setSearch] = useState('')
 
   return (
     <div className="App">
