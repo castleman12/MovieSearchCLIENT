@@ -51,4 +51,5 @@ const Auth = (props) => {
     </Modal>
   )
 }
+
 export default Auth;
