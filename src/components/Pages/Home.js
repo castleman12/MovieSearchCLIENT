@@ -1,7 +1,8 @@
 import {useState} from 'react';
-import SearchResults from './SearchResults'
 import {Jumbotron, Container, Form, InputGroup, InputGroupAddon, InputGroupText, Input, Button} from 'reactstrap'
 import Auth from '../Auth/Auth'
+import Footer from '../Footer';
+import {Link} from 'react-router-dom';
 
 
 const Home = (props) => {
@@ -16,7 +17,7 @@ const Home = (props) => {
   const authOff = () => {
     setAuthActive(false);
   }
-    
+
 
         return (
           <div>
@@ -25,18 +26,19 @@ const Home = (props) => {
                 <h1 className="display-3">MegaMovies</h1>
                 <Form>
                 <InputGroup>
-                    <Input type="text"  name="movieSearch" placeholder="Search for a movie" />
+                    <Input type="text"  name="movieSearch" placeholder="Search for a movie" onChange={(e) => {props.setSearch(e.target.value)}}/>
                     <InputGroupAddon addonType="append" color="secondary">
-                      <Button type="submit">Search!</Button>
+                      <Link to="/searchresults"><Button>Search!</Button></Link>
                 </InputGroupAddon>
              </InputGroup>
                 </Form>
                 <br />
             <Button onClick={() => {authOn()}}>Login or Sign Up!</Button>
-            {authActive ? <Auth  authOff={authOff} /> : null}
-
-            <Button>Watchlist</Button>
-              </Container>
+            {authActive ? <Auth  updateToken={props.updateToken} authOff={authOff} /> : null}
+            <Link to="/watchlist"><Button>Watchlist</Button></Link>
+              </Container> 
+              <br/>
+              <Footer/>
             </Jumbotron>
           </div>
         );
