@@ -25,7 +25,7 @@ const Auth = (props) => {
   const HandleSubmit = (event) => {
     event.preventDefault();
         
-    const url = login ? 'http://localhost:4000/user/login' : 'http://localhost:4000/user/register';  
+    const url = login ? 'http://localhost:6969/user/login' : 'http://localhost:6969/user/register';  
     const bodyObj = login ? {user: {
       email: email,
       password: password
@@ -43,11 +43,8 @@ const Auth = (props) => {
     })
     
     .then(res => res.json())
-    .then(data => login ?
-      //console.log('data.sessionToken:',data.sessionToken) : undefined)
-      //console.log('error:',data.error) : undefined)
-      //props.updateToken(data.sessionToken) : undefined) 
-      console.log("data:",data) : undefined) 
+    .then(data => console.log(data.message))
+    .then(data => props.updateToken(data.sessionToken))
     .then(data => setMessage(data.message))
     .catch(error => login ?
       setMessage(error.name) : setMessage(error.name))
@@ -65,7 +62,7 @@ const Auth = (props) => {
               <Label htmlFor="email">Email:</Label>  
               <br/>  
               <Input 
-                  type="text" 
+                  type="email" 
                   id="email" 
                   value={email} 
                   placeholder="email@email.com" 
@@ -74,7 +71,7 @@ const Auth = (props) => {
                   }} 
               /> 
               <br/>
-              <Label htmlFor="password">Password</Label> 
+              <Label htmlFor="password">Password:</Label> 
               <br/>   
               <Input 
                   type="password" 
@@ -84,12 +81,11 @@ const Auth = (props) => {
                   setPassword(event.target.value);
                   }} 
               /> 
+              { login ? <Button type="submit">Submit User Data</Button> : password.length < 5 ? <p>Password must be minimum 5 characters in length</p> : <Button type="submit">Submit User Data</Button> }
               <br/>
-              <Button type="submit">Submit User Data</Button>
               <br/>
               <Button onClick={loginToggle}>Login/Signup Toggle</Button>
               <br/>
-              { password.length < 5 ? <p>Password must be minimum 5 characters in length</p> : null }
               <p>{message}</p>
             </Form>
         </ModalBody>
