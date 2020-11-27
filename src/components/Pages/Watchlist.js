@@ -1,7 +1,6 @@
 import {useState, useEffect} from 'react'
 import {Button, Navbar} from 'reactstrap'
 import Header from '../Navbar'
-import deleteMovie from './deleteMovie'
 
 const Watchlist = (props) => {
 
@@ -14,7 +13,7 @@ const Watchlist = (props) => {
             method: 'GET',
             headers: {
             'Content-Type': 'application/json',
-            'Authorization': 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiaWF0IjoxNjA2NTAxMDk5LCJleHAiOjE2MDY1ODc0OTl9.ThyQt3YdDzuQb9w-EZyQm4ZiluCErOw7y453-oYMIoM'
+            'Authorization': props.token
              }
              })
             .then(res => res.json())
@@ -38,6 +37,19 @@ const Watchlist = (props) => {
             
          const ShowData = (props) => {
 
+            const deleteMovie = (id) => {
+              console.log(id)
+                    fetch(`http://localhost:3000/watchlist/delete/${id}`, {
+                        method: 'DELETE',
+                       headers: {
+                           'Content-Type': 'application/json',
+                           'Authorization': props.token
+                       }
+                    
+                    })
+                }
+                    
+
             return (
                 props.watchList.map((watchlist, index) => {
                 return(
@@ -48,7 +60,7 @@ const Watchlist = (props) => {
                  
                     <br/>
                     {watchlist.watched ? <Button id="watched">Watched!</Button> : <Button id="watched">Watched?</Button>}
-                    <Button id="add" onClick={deleteMovie}>Remove from Watchlist!</Button>
+                    <Button id="add" onClick={deleteMovie(watchlist.id)}>Remove from Watchlist!</Button>
                     </div>
                 )
                 })
