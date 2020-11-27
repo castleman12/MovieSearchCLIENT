@@ -1,32 +1,39 @@
-import {React, useState} from 'react';
+import {React, useState, useEffect} from 'react';
 import {Button, Form, FormGroup, Label, Input, Modal, ModalHeader, ModalBody} from 'reactstrap';
-//import './Auth.css';
+import "bootstrap/dist/css/bootstrap.css";
+import '../Auth/Auth.css';
+
 const Auth = (props) => {
+   
   const [login, setLogin] = useState(true);
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+  const [message, setMessage] = useState([]);
+     
   const title = () => {
     return login ? 'Login' : 'Signup';    
   }
+
   const loginToggle = (event) => {
     event.preventDefault();
     setLogin(!login) 
     setEmail("");
     setPassword("");
   }
-  const handleSubmit = (event) => {
+
+  
+  const HandleSubmit = (event) => {
     event.preventDefault();
-    const url = login ? 'http://localhost:6969/user/login' : 'http://localhost:6969/user/register';  
-    const bodyObj = login ? {
-      user:{
+        
+    const url = login ? 'http://localhost:4000/user/login' : 'http://localhost:4000/user/register';  
+    const bodyObj = login ? {user: {
       email: email,
       password: password
-    }
-    } : {
-      user: {
+    }} : {user: {
       email: email,
       password: password
     }}
+
     fetch(url, {
       method: 'POST',
       headers: {
@@ -34,17 +41,27 @@ const Auth = (props) => {
       },
       body: JSON.stringify(bodyObj)
     })
+    
     .then(res => res.json())
-    .then(data => console.log(data.sessionToken))
-    .then(data => login ? props.updateToken(data) : undefined)
+    .then(data => login ?
+      //console.log('data.sessionToken:',data.sessionToken) : undefined)
+      //console.log('error:',data.error) : undefined)
+      //props.updateToken(data.sessionToken) : undefined) 
+      console.log("data:",data) : undefined) 
+    .then(data => setMessage(data.message))
+    .catch(error => login ?
+      setMessage(error.name) : setMessage(error.name))
+
   }
   
   return (   
     <Modal isOpen={true}>
     <ModalHeader> {title()} 
-    < Button onClick={props.authOff} >X</Button> </ModalHeader> 
-        <ModalBody>      
-            <Form onSubmit={handleSubmit}> 
+
+    < Button className="Close" onClick={props.authOff} >X</Button> </ModalHeader> 
+        <ModalBody>   
+            <Form onSubmit={HandleSubmit}>    
+
               <Label htmlFor="email">Email:</Label>  
               <br/>  
               <Input 
@@ -71,6 +88,9 @@ const Auth = (props) => {
               <Button type="submit">Submit User Data</Button>
               <br/>
               <Button onClick={loginToggle}>Login/Signup Toggle</Button>
+              <br/>
+              { password.length < 5 ? <p>Password must be minimum 5 characters in length</p> : null }
+              <p>{message}</p>
             </Form>
         </ModalBody>
     </Modal>
@@ -78,3 +98,4 @@ const Auth = (props) => {
 }
 
 export default Auth;
+
