@@ -24,7 +24,6 @@ const SearchResults = (props) => {
     } else {
         return(
             <div>
-                <p>{props.search}</p>
                 <ShowData searchResults={searchResults} />
             </div>
     )}
