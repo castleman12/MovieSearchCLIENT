@@ -1,5 +1,5 @@
 import {React, useState, useEffect} from 'react';
-import {Button, Form, Label, Input, Modal, ModalHeader, ModalBody} from 'reactstrap';
+import {Button, Form, FormGroup, Label, Input, Modal, ModalHeader, ModalBody} from 'reactstrap';
 import "bootstrap/dist/css/bootstrap.css";
 import '../Auth/Auth.css';
 
@@ -20,6 +20,7 @@ const Auth = (props) => {
     setEmail("");
     setPassword("");
   }
+
   
   const HandleSubmit = (event) => {
     event.preventDefault();
@@ -32,7 +33,7 @@ const Auth = (props) => {
       email: email,
       password: password
     }}
-    
+
     fetch(url, {
       method: 'POST',
       headers: {
@@ -50,14 +51,17 @@ const Auth = (props) => {
     .then(data => setMessage(data.message))
     .catch(error => login ?
       setMessage(error.name) : setMessage(error.name))
+
   }
   
   return (   
     <Modal isOpen={true}>
     <ModalHeader> {title()} 
+
     < Button className="Close" onClick={props.authOff} >X</Button> </ModalHeader> 
         <ModalBody>   
             <Form onSubmit={HandleSubmit}>    
+
               <Label htmlFor="email">Email:</Label>  
               <br/>  
               <Input 
