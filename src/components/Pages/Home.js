@@ -3,6 +3,8 @@ import {Jumbotron, Container, Form, InputGroup, InputGroupAddon, InputGroupText,
 import Auth from '../Auth/Auth'
 import Footer from '../Footer';
 import {Link} from 'react-router-dom';
+import './Home.css'
+import logo from './MegaMovies@2x.png'
 
 
 const Home = (props) => {
@@ -21,21 +23,22 @@ const Home = (props) => {
 
         return (
           <div>
-            <Jumbotron fluid>
+            <Jumbotron id="jumbotron" fluid >
               <Container fluid>
-                <h1 className="display-3">MegaMovies</h1>
+                
+                <img class="display-3 logo" src={logo} />
                 <Form>
-                <InputGroup>
-                    <Input type="text"  name="movieSearch" placeholder="Search for a movie" onChange={(e) => {props.setSearch(e.target.value)}}/>
+                <InputGroup  className="w-25 col-centered">
+                    <Input  type="text" name="movieSearch"  placeholder="Search for a movie" onChange={(e) => {props.setSearch(e.target.value)}} />
                     <InputGroupAddon addonType="append" color="secondary">
                       <Link to="/searchresults"><Button>Search!</Button></Link>
                 </InputGroupAddon>
              </InputGroup>
                 </Form>
                 <br />
-            <Button onClick={() => {authOn()}}>Login or Sign Up!</Button>
+            <Button className="mr-5" onClick={() => {authOn()}}>Login or Sign Up!</Button>
             {authActive ? <Auth  updateToken={props.updateToken} authOff={authOff} /> : null}
-            <Link to="/watchlist"><Button>Watchlist</Button></Link>
+            <Link to="/watchlist"><Button className="ml-5">Watchlist</Button></Link>
               </Container> 
               <br/>
               <Footer/>
