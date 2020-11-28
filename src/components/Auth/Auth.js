@@ -93,13 +93,10 @@ const Auth = (props) => {
               {/* Commented out line below, could not center "Submit" button, ternary was forcing it on the left side */}
               {/* { login ? <Button type="submit">Submit User Data</Button> : password.length < 5 ? <p>Password must be minimum 5 characters in length</p> : <Button type="submit">Submit User Data</Button> } */}
               {password.length < 5 ? <p>Password must be minimum 5 characters in length</p> : null}
-              <br/>
-              <br/>
               <Button className="Submit" type="submit">Submit User Data</Button>
               <br/>
               <Button className="Login" onClick={loginToggle}>Login/Signup Toggle</Button>
-              <br/>
-              <br/>
+              <br/>              
               <p>{message}</p> 
             </Form>
         </ModalBody>
