@@ -10,7 +10,36 @@
   
 .Close:hover,
 .Close:focus {
-    color: #f44336;
+    color: black;
     cursor: pointer;
   }
   
+.Submit {
+    position: absolute;
+    left: 170px;
+    top: 230px;
+    height: 30px;
+    color: #f1f1f1;
+    background-color: #696969;
+  }
+  
+.Submit:hover,
+.Submit:focus {
+    color: black;
+    cursor: pointer;
+  }  
+
+.Login {
+    position: absolute;
+    left: 160px;
+    top: 270px;
+    height: 30px;
+    color: #f1f1f1;
+    background-color: #696969;
+  }
+  
+.Login:hover,
+.Login:focus {
+    color: black;
+    cursor: pointer;
+  }  

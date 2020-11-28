@@ -38,7 +38,8 @@ const Header = (props) => {
               <NavLink href="/watchlist">Watchlist</NavLink>
             </NavItem>
             <NavItem>
-              <Button>Login/out</Button>
+              {/* <Button>Login/out</Button> */}
+              <Button onClick={props.clickLogout}>Logout</Button>
             </NavItem>
           </Nav>
         </Collapse>

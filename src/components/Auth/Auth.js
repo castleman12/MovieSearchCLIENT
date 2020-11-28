@@ -1,7 +1,8 @@
-import {React, useState, useEffect} from 'react';
-import {Button, Form, FormGroup, Label, Input, Modal, ModalHeader, ModalBody} from 'reactstrap';
+import {React, useState} from 'react';
+import {Button, Form, Label, Input, Modal, ModalHeader, ModalBody} from 'reactstrap';
 import "bootstrap/dist/css/bootstrap.css";
 import '../Auth/Auth.css';
+import Home from '../Pages/Home'
 
 const Auth = (props) => {
    
@@ -9,7 +10,7 @@ const Auth = (props) => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [message, setMessage] = useState('');
-     
+
   const title = () => {
     return login ? 'Login' : 'Signup';    
   }
@@ -19,13 +20,13 @@ const Auth = (props) => {
     setLogin(!login) 
     setEmail("");
     setPassword("");
+    setMessage("");
   }
-
   
   const HandleSubmit = (event) => {
     event.preventDefault();
         
-    const url = login ? 'http://localhost:6969/user/login' : 'http://localhost:6969/user/register';  
+    const url = login ? 'http://localhost:4000/user/login' : 'http://localhost:4000/user/register';  
     const bodyObj = login ? {user: {
       email: email,
       password: password
@@ -33,15 +34,35 @@ const Auth = (props) => {
       email: email,
       password: password
     }}
-
-    fetch(url, {
-      method: 'POST',
-      headers: {
-        'Content-Type': "application/json"
-      },
-      body: JSON.stringify(bodyObj)
-    })
+        
+    async function postLogin() {
+       
+      let response = await fetch(url, {
+        method: 'POST',
+        headers: {
+          'Content-Type': "application/json"
+        },
+        body: JSON.stringify(bodyObj)
+      })
+       
+      response = await response.json()
+      props.updateToken(response.sessionToken)
+      console.log("token:",response.sessionToken)
+      if (response.sessionToken !== undefined) {
+          setMessage(response.message)  
+          window.location.reload(true)            
+      } else if (login) {
+          setMessage(response.error) 
+      } else {
+          setMessage("Signup failed") 
+      }
+    } 
     
+
+    postLogin()
+             
+  }   
+
     .then(res => res.json())
     .then(data => console.log(data.message))
     .then(data => props.updateToken(data.sessionToken))
@@ -53,11 +74,9 @@ const Auth = (props) => {
   return (   
     <Modal isOpen={true}>
     <ModalHeader> {title()} 
-
     < Button className="Close" onClick={props.authOff} >X</Button> </ModalHeader> 
         <ModalBody>   
             <Form onSubmit={HandleSubmit}>    
-
               <Label htmlFor="email">Email:</Label>  
               <br/>  
               <Input 
@@ -70,7 +89,7 @@ const Auth = (props) => {
                   }} 
               /> 
               <br/>
-              <Label htmlFor="password">Password:</Label> 
+              <Label htmlFor="password">Password</Label> 
               <br/>   
               <Input 
                   type="password" 
@@ -80,12 +99,17 @@ const Auth = (props) => {
                   setPassword(event.target.value);
                   }} 
               /> 
-              { login ? <Button type="submit">Submit User Data</Button> : password.length < 5 ? <p>Password must be minimum 5 characters in length</p> : <Button type="submit">Submit User Data</Button> }
+              {/* Commented out line below, could not center "Submit" button, ternary was forcing it on the left side */}
+              {/* { login ? <Button type="submit">Submit User Data</Button> : password.length < 5 ? <p>Password must be minimum 5 characters in length</p> : <Button type="submit">Submit User Data</Button> } */}
+              {password.length < 5 ? <p>Password must be minimum 5 characters in length</p> : null}
               <br/>
               <br/>
-              <Button onClick={loginToggle}>Login/Signup Toggle</Button>
+              <Button className="Submit" type="submit">Submit User Data</Button>
               <br/>
-              <p>{message}</p>
+              <Button className="Login" onClick={loginToggle}>Login/Signup Toggle</Button>
+              <br/>
+              <br/>
+              <p>{message}</p> 
             </Form>
         </ModalBody>
     </Modal>
