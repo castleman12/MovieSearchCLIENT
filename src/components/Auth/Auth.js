@@ -10,7 +10,7 @@ const Auth = (props) => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [message, setMessage] = useState('');
-  
+
   const title = () => {
     return login ? 'Login' : 'Signup';    
   }
@@ -58,9 +58,18 @@ const Auth = (props) => {
       }
     } 
     
+
     postLogin()
              
   }   
+
+    .then(res => res.json())
+    .then(data => console.log(data.message))
+    .then(data => props.updateToken(data.sessionToken))
+    .then(data => setMessage(data.message))
+    .catch(error => setMessage(error.name))
+
+  }
   
   return (   
     <Modal isOpen={true}>
