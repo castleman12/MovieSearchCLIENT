@@ -1,0 +1,19 @@
+#jumbotron {
+    background-color: rgba(199, 192, 192, 0);
+    margin-top: 10%;
+}
+
+.col-centered{
+    margin: 0 auto;
+    float: none;
+}
+
+.logo {
+    width: 50%;
+    margin-left: 9%;
+    margin-bottom: 1%;
+}
+
+.button {
+    padding: 10% 10% 10% 10%;
+}
