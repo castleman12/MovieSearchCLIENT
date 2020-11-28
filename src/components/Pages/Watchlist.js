@@ -9,7 +9,7 @@ const Watchlist = (props) => {
 
     useEffect(() => {
       
-            fetch('http://localhost:3000/watchlist/user', {
+            fetch('http://localhost:6969/watchlist/user', {
             method: 'GET',
             headers: {
             'Content-Type': 'application/json',
