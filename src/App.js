@@ -32,11 +32,12 @@ function App() {
     <div className="App">
 
       <Router>
-        <Header updateToken={updateToken} setSearch={setSearch} search={search}/>
+
+        <Header updateToken={updateToken} token={token} setSearch={setSearch} search={search}/>
         <Header clickLogout={clearToken}/>
+
       </Router>
-      {/* <Home setSearch={setSearch} search={search}/>
-      <SearchResults search={search}/> */}
+
     </div>
   );
 }
