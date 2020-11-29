@@ -38,7 +38,7 @@ const Home = (props) => {
                 <br />
             <Button className="mr-5" onClick={() => {authOn()}}>Login or Sign Up!</Button>
             {authActive ? <Auth  updateToken={props.updateToken} authOff={authOff} /> : null}
-            <Link to="/watchlist"><Button className="ml-5">Watchlist</Button></Link>
+            {localStorage.getItem('token') ? <Link to="/watchlist"><Button className="ml-5">Watchlist</Button></Link> : null}
               </Container> 
               <br/>
               <Footer/>

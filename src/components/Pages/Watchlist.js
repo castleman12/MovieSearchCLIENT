@@ -3,9 +3,12 @@ import {Button, Navbar} from 'reactstrap'
 import Header from '../Navbar'
 const Watchlist = (props) => {
     const [watchList, setWatchList] = useState([]);
+
+    
+
     useEffect(() => {
       async function fetchResults(){
-            let response = await fetch('http://localhost:6969/watchlist/user', {
+            let response = await fetch('http://localhost:3000/watchlist/user', {
             method: 'GET',
             headers: {
             'Content-Type': 'application/json',
@@ -19,7 +22,7 @@ const Watchlist = (props) => {
         }, [])
             return(
                 <div>
-                    <ShowData watchList={watchList} />
+                    {localStorage.getItem('token') ? <ShowData watchList={watchList} /> : <div><h1>Please login!</h1></div>}
                 </div>
         ) 
             }
@@ -27,7 +30,7 @@ const Watchlist = (props) => {
 
          const ShowData = (props) => {
             const deleteMovie = (id) => {
-                    fetch(`http://localhost:6969/watchlist/delete/${id}`, {
+                    fetch(`http://localhost:3000/watchlist/delete/${id}`, {
                         method: 'DELETE',
                        headers: {
                            'Content-Type': 'application/json',
@@ -37,7 +40,7 @@ const Watchlist = (props) => {
                 }
 
             const updateMovie = (id) => {
-                fetch(`http://localhost:6969/watchlist/${id}`, {
+                fetch(`http://localhost:3000/watchlist/${id}`, {
                         method: 'PUT',
                         body: JSON.stringify({watched: true}),
                             headers: new Headers({
@@ -47,6 +50,7 @@ const Watchlist = (props) => {
                             })
                             .then((res) => res.json())
             }
+            
             return (
                 props.watchList.map((watchlist, index) => {
                 return(

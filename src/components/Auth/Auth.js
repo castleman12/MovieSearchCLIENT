@@ -26,7 +26,7 @@ const Auth = (props) => {
   const HandleSubmit = (event) => {
     event.preventDefault();
         
-    const url = login ? 'http://localhost:6969/user/login' : 'http://localhost:6969/user/register';  
+    const url = login ? 'http://localhost:3000/user/login' : 'http://localhost:3000/user/register';  
     const bodyObj = login ? {user: {
       email: email,
       password: password

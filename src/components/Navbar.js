@@ -35,10 +35,10 @@ const Header = (props) => {
               <NavLink href="/">Search</NavLink>
             </NavItem>
             <NavItem>
-              <NavLink href="/watchlist">Watchlist</NavLink>
+            {localStorage.getItem('token') ?  <NavLink href="/watchlist">Watchlist</NavLink> : null}
             </NavItem>
             <NavItem>
-              <Button onClick={props.clickLogout}>Logout</Button>
+            {localStorage.getItem('token') ?  <Button onClick={props.clickLogout}>Logout</Button> : null}
             </NavItem>
           </Nav>
         </Collapse>
