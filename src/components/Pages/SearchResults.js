@@ -25,7 +25,6 @@ const SearchResults = (props) => {
     } else {
         return(
             <div>
-                <p>{props.token}</p>
                 <ShowData searchResults={searchResults} token={props.token} />
             </div>
     )}
@@ -48,7 +47,8 @@ const ShowData = (props) => {
                 'Content-Type': 'application/json',
                 "Authorization": props.token
             })
-            }).then((res) => res.json())
+            })
+            .then((res) => res.json())
         }
     
 

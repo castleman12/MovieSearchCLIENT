@@ -38,7 +38,6 @@ const Header = (props) => {
               <NavLink href="/watchlist">Watchlist</NavLink>
             </NavItem>
             <NavItem>
-              {/* <Button>Login/out</Button> */}
               <Button onClick={props.clickLogout}>Logout</Button>
             </NavItem>
           </Nav>
@@ -49,7 +48,7 @@ const Header = (props) => {
           <Route exact path="/"><Home updateToken={props.updateToken} setSearch={props.setSearch} search={props.search} token={props.token}/></Route>
           <Route exact path="/home"><Home updateToken={props.updateToken} setSearch={props.setSearch} search={props.search} Link={Link} token={props.token}/></Route>
           <Route exact path="/searchresults"><SearchResults search={props.search} token={props.token}/></Route>
-          <Route exact path="/watchlist"><Watchlist/> </Route>
+          <Route exact path="/watchlist"><Watchlist token={props.token}/> </Route>
         </Switch>
       </div>
     </div>

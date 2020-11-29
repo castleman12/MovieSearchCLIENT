@@ -33,8 +33,7 @@ function App() {
 
       <Router>
 
-        <Header updateToken={updateToken} token={token} setSearch={setSearch} search={search}/>
-        <Header clickLogout={clearToken}/>
+        <Header clickLogout={clearToken} updateToken={updateToken} token={token} setSearch={setSearch} search={search}/>
 
       </Router>
 
