@@ -36,7 +36,7 @@ const ShowData = (props) => {
     
     const addMovie = (movie) => {
         console.log(movie)
-        fetch('http://localhost:6969/watchlist', {
+        fetch('http://localhost:3000/watchlist', {
             method: 'POST',
             body: JSON.stringify({title: movie.title,
             posterPath: movie.poster_path,
