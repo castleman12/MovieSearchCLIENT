@@ -67,9 +67,9 @@ const Auth = (props) => {
 
   return (   
     <Modal isOpen={true}>
-    <ModalHeader> {title()} 
-    < Button className="Close" onClick={props.authOff} >X</Button> </ModalHeader> 
-        <ModalBody>   
+    <ModalHeader id="header"> {title()} 
+    < Button id="close" onClick={props.authOff}>X</Button> </ModalHeader> 
+        <ModalBody id="modal" >   
             <Form onSubmit={HandleSubmit}>    
               <Label htmlFor="email">Email:</Label>  
               <br/>  
@@ -94,15 +94,17 @@ const Auth = (props) => {
                   }} 
               /> 
               {/* Commented out line below, could not center "Submit" button, ternary was forcing it on the left side */}
-              {/* { login ? <Button type="submit">Submit User Data</Button> : password.length < 5 ? <p>Password must be minimum 5 characters in length</p> : <Button type="submit">Submit User Data</Button> } */}
-              {password.length < 5 ? <p>Password must be minimum 5 characters in length</p> : null}
-              <Button className="Submit" type="submit">Submit User Data</Button>
+
+              {/* {password.length < 5 ? <p>Password must be minimum 5 characters in length</p> : null} */}
               <br/>
-              <Button className="Login" onClick={loginToggle}>Login/Signup Toggle</Button>
-              {/* <br/>               */}
+              <br/>
+              { login ? <Button id="Submit" type="submit">Submit User Data</Button> : password.length < 5 ? <p>Password must be minimum 5 characters in length</p> : <Button type="submit" className="Submit">Submit User Data</Button> }
+              {/* <Button  type="submit">Submit User Data</Button> */}
+              <br/>
+              <Button id="Login" onClick={loginToggle}>Login/Signup Toggle</Button>
 
               <p>{message}</p> 
-              <br/>
+             
             </Form>
         </ModalBody>
     </Modal>
