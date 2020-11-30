@@ -25,7 +25,7 @@ const Auth = (props) => {
   const HandleSubmit = (event) => {
     event.preventDefault();
         
-    const url = login ? 'http://localhost:4000/user/login' : 'http://localhost:4000/user/register';  
+    const url = login ? 'http://localhost:3000/user/login' : 'http://localhost:3000/user/register';  
     const bodyObj = login ? {user: {
       email: email,
       password: password
@@ -64,6 +64,7 @@ const Auth = (props) => {
     postLogin()
   }   
     
+
   return (   
     <Modal isOpen={true}>
     <ModalHeader> {title()} 
@@ -72,7 +73,7 @@ const Auth = (props) => {
             <Form onSubmit={HandleSubmit}>    
               <Label htmlFor="email">Email:</Label>  
               <br/>  
-              <Input 
+              <Input required
                   type="email" 
                   id="email" 
                   value={email} 
@@ -84,7 +85,7 @@ const Auth = (props) => {
               <br/>
               <Label htmlFor="password">Password</Label> 
               <br/>   
-              <Input 
+              <Input required
                   type="password" 
                   id="password" 
                   value={password} 
@@ -99,7 +100,9 @@ const Auth = (props) => {
               <br/>
               <Button className="Login" onClick={loginToggle}>Login/Signup Toggle</Button>
               {/* <br/>               */}
+
               <p>{message}</p> 
+              <br/>
             </Form>
         </ModalBody>
     </Modal>

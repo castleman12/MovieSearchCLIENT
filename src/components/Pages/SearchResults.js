@@ -25,7 +25,6 @@ const SearchResults = (props) => {
     } else {
         return(
             <div>
-                <p>{props.token}</p>
                 <ShowData searchResults={searchResults} token={props.token} />
             </div>
     )}
@@ -37,7 +36,7 @@ const ShowData = (props) => {
     
     const addMovie = (movie) => {
         console.log(movie)
-        fetch('http://localhost:6969/watchlist', {
+        fetch('http://localhost:3000/watchlist', {
             method: 'POST',
             body: JSON.stringify({title: movie.title,
             posterPath: movie.poster_path,
@@ -48,7 +47,8 @@ const ShowData = (props) => {
                 'Content-Type': 'application/json',
                 "Authorization": props.token
             })
-            }).then((res) => res.json())
+            })
+            .then((res) => res.json())
         }
     
 
