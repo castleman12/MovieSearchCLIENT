@@ -1,24 +1,42 @@
-
+import {Switch, Route} from 'react'
+import Home from './components/Pages/Home'
+import Header from './components/Navbar'
 import './App.css';
-
+import {useState,useEffect} from 'react';
+import SearchResults from './components/Pages/SearchResults';
+import {
+  BrowserRouter as Router,
+} from 'react-router-dom';
 
 function App() {
+  const [search, setSearch] = useState('')
+  const [token, setToken] = useState('')
+  
+  useEffect(() => {
+    if (localStorage.getItem('token')){
+      setToken(localStorage.getItem('token'));
+    }
+  }, [])
+ 
+  const updateToken = (newToken) => {
+    localStorage.setItem('token', newToken);
+    setToken(newToken);
+  }
+
+  const clearToken = () => {
+    localStorage.clear();
+    setToken('');
+  }
+   
   return (
     <div className="App">
-      <header className="App-header">
-  
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+
+      <Router>
+
+        <Header clickLogout={clearToken} updateToken={updateToken} token={token} setSearch={setSearch} search={search}/>
+
+      </Router>
+
     </div>
   );
 }
