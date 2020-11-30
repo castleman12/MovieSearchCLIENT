@@ -1,3 +1,4 @@
+
 #modal {
   background-color: rgba(42,0,128,.89);
   color: white;
@@ -19,6 +20,7 @@
     font-weight: bolder;
     transition: .5s;
     
+
   }
   
 #close:hover,
@@ -34,6 +36,7 @@
     top: 200px;
     height: 10px;
     padding-bottom: 32px;
+
     color: #f1f1f1;
     background-color: rgba(212, 107, 3, 0.822);
     transition: .5s;
@@ -52,6 +55,7 @@
     top: 270px;
     height: 30px;
     padding-bottom: 32px;
+
     color: #f1f1f1;
     background-color: rgba(212, 107, 3, 0.822);
     transition: .5s;
@@ -63,3 +67,4 @@
   opacity: 75%;
     cursor: pointer;
   }  
+   
