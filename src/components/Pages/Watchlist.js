@@ -2,6 +2,9 @@ import {useState, useEffect} from 'react'
 import {Button, Navbar} from 'reactstrap'
 import Header from '../Navbar'
 import './Watchlist.css'
+import { transitions, positions, Provider as AlertProvider } from 'react-alert'
+
+
 const Watchlist = (props) => {
     const [watchList, setWatchList] = useState([]);
 
@@ -54,7 +57,9 @@ const Watchlist = (props) => {
             
             return (
                 props.watchList.map((watchlist, index) => {
+             
                 return(
+                    
                     <div key={index} className="resultsContainer">
                     <img src={"https://image.tmdb.org/t/p/w500/"+ watchlist.posterPath}/>
                     <h1>{watchlist.title}</h1>
@@ -63,7 +68,8 @@ const Watchlist = (props) => {
                     {watchlist.watched ? <Button id="watched">Watched!</Button> : <Button id="watched" onClick={() =>{updateMovie(watchlist.id)}}>Watched?</Button>}
                     <Button id="add" onClick={() => {deleteMovie(watchlist.id)}}>Remove from Watchlist!</Button>
                     </div>
+                )}
                 )
-                })
             )
+                
         }
