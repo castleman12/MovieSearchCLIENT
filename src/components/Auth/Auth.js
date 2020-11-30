@@ -2,7 +2,6 @@ import {React, useState} from 'react';
 import {Button, Form, Label, Input, Modal, ModalHeader, ModalBody} from 'reactstrap';
 import "bootstrap/dist/css/bootstrap.css";
 import '../Auth/Auth.css';
-import Home from '../Pages/Home'
 
 const Auth = (props) => {
    
@@ -46,31 +45,25 @@ const Auth = (props) => {
       })
        
       response = await response.json()
-      props.updateToken(response.sessionToken)
       console.log("token:",response.sessionToken)
+      props.updateToken(response.sessionToken)
+            
       if (response.sessionToken !== undefined) {
           setMessage(response.message)  
           window.location.reload(true)            
-      } else if (login) {
+      } else if (login) { 
           setMessage(response.error) 
       } else {
-          setMessage("Signup failed") 
+          console.log("error:",response.error) 
+          setMessage(response.error.errors[0].message)  
+          //setMessage("Signup failed")
+          
       }
     } 
-    
-
-    postLogin()
-             
-  }   
-
-    .then(res => res.json())
-    .then(data => console.log(data.message))
-    .then(data => props.updateToken(data.sessionToken))
-    .then(data => setMessage(data.message))
-    .catch(error => setMessage(error.name))
-
-  }
   
+    postLogin()
+  }   
+    
   return (   
     <Modal isOpen={true}>
     <ModalHeader> {title()} 
@@ -105,13 +98,13 @@ const Auth = (props) => {
               <Button className="Submit" type="submit">Submit User Data</Button>
               <br/>
               <Button className="Login" onClick={loginToggle}>Login/Signup Toggle</Button>
-              <br/>              
+              {/* <br/>               */}
               <p>{message}</p> 
             </Form>
         </ModalBody>
     </Modal>
   )
+   
 }
 
 export default Auth;
-
