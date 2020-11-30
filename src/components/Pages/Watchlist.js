@@ -4,6 +4,7 @@ import Header from '../Navbar'
 import { useAlert } from 'react-alert'
 import './Watchlist.css'
 import { transitions, positions, Provider as AlertProvider } from 'react-alert'
+import noPoster from './PosterNoFound.png'
 
 
 const Watchlist = (props) => {
@@ -68,7 +69,7 @@ const Watchlist = (props) => {
                 return(
                     
                     <div key={index} className="resultsContainer">
-                    <img src={"https://image.tmdb.org/t/p/w500/"+ watchlist.posterPath}/>
+                    {watchlist.poster_path ? <img src={"https://image.tmdb.org/t/p/w500/"+ watchlist.poster_path}/> : <img src={noPoster}/>}
                     <h1>{watchlist.title}</h1>
                     <p><b>Release Date:</b> <br/> {watchlist.releaseDate}</p>
                     <br/>
