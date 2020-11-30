@@ -2,7 +2,6 @@ import {React, useState} from 'react';
 import {Button, Form, Label, Input, Modal, ModalHeader, ModalBody} from 'reactstrap';
 import "bootstrap/dist/css/bootstrap.css";
 import '../Auth/Auth.css';
-import Home from '../Pages/Home'
 
 const Auth = (props) => {
    
@@ -46,23 +45,26 @@ const Auth = (props) => {
       })
        
       response = await response.json()
-      props.updateToken(response.sessionToken)
       console.log("token:",response.sessionToken)
+      props.updateToken(response.sessionToken)
+            
       if (response.sessionToken !== undefined) {
           setMessage(response.message)  
           window.location.reload(true)            
-      } else if (login) {
+      } else if (login) { 
           setMessage(response.error) 
       } else {
-          setMessage("Signup failed") 
+          console.log("error:",response.error) 
+          setMessage(response.error.errors[0].message)  
+          //setMessage("Signup failed")
+          
       }
     } 
+  
+    postLogin()
+  }   
     
 
-    postLogin()
-  }
-
-  
   return (   
     <Modal isOpen={true}>
     <ModalHeader> {title()} 
@@ -92,20 +94,20 @@ const Auth = (props) => {
                   }} 
               /> 
               {/* Commented out line below, could not center "Submit" button, ternary was forcing it on the left side */}
-              {/* {password.length < 5 ? <p>Password must be minimum 5 characters in length</p> : null} */}
-              <br/>
-              <br/>
-              { login ? <Button className="Submit" type="submit">Submit User Data</Button> : password.length < 5 ? <p>Password must be minimum 5 characters in length</p> : <Button type="submit" className="Submit">Submit User Data</Button> }
-              {/* <Button  type="submit">Submit User Data</Button> */}
+              {/* { login ? <Button type="submit">Submit User Data</Button> : password.length < 5 ? <p>Password must be minimum 5 characters in length</p> : <Button type="submit">Submit User Data</Button> } */}
+              {password.length < 5 ? <p>Password must be minimum 5 characters in length</p> : null}
+              <Button className="Submit" type="submit">Submit User Data</Button>
               <br/>
               <Button className="Login" onClick={loginToggle}>Login/Signup Toggle</Button>
+              {/* <br/>               */}
+
               <p>{message}</p> 
               <br/>
             </Form>
         </ModalBody>
     </Modal>
   )
+   
 }
 
 export default Auth;
-
