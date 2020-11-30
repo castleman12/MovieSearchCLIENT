@@ -2,6 +2,7 @@ import {useState, useEffect} from 'react';
 import { Pagination, PaginationItem, PaginationLink, Button, Form } from 'reactstrap';
 import { useAlert } from 'react-alert'
 import './SearchResults.css';
+import noPoster from './PosterNoFound.png'
 
 const SearchResults = (props) => {
 
@@ -98,7 +99,7 @@ const ShowData = (props) => {
         props.searchResults.map((movie, index) => {
         return(
             <div key={index} className="resultsContainer">
-            <img src={"https://image.tmdb.org/t/p/w500/"+ movie.poster_path}/>
+            {movie.poster_path ? <img src={"https://image.tmdb.org/t/p/w500/"+ movie.poster_path}/> : <img src={noPoster}/>}
             <h1>{movie.title}</h1>
             <p><b>Release Date:</b> <br/> {movie.release_date}</p>
             <p><b>About the film:</b> <br/>
