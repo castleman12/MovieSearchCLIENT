@@ -17,6 +17,8 @@ import {
   Button
 } from 'reactstrap';
 import Watchlist from './Pages/Watchlist'
+import './Navbar.css'
+import logo from '../assets/MainLogo.png'
 
 const Header = (props) => {
 
@@ -26,8 +28,8 @@ const Header = (props) => {
 
   return(
     <div>
-      <Navbar color="dark" dark expand="md" className="sticky-top">
-        <NavbarBrand href="/">MegaMovies</NavbarBrand>
+      <Navbar id="navbar"  dark expand="md" className="sticky-top">
+        <NavbarBrand href="/" id="logo"><img src={logo} /></NavbarBrand>
         <NavbarToggler onClick={toggle} />
         <Collapse isOpen={isOpen} navbar>
           <Nav className="mr-auto" navbar>
@@ -38,7 +40,7 @@ const Header = (props) => {
             {localStorage.getItem('token') ?  <NavLink href="/watchlist">Watchlist</NavLink> : null}
             </NavItem>
             <NavItem>
-            {localStorage.getItem('token') ?  <Button onClick={props.clickLogout}>Logout</Button> : null}
+            {localStorage.getItem('token') ?  <Button onClick={props.clickLogout} id="logout">Logout</Button> : null}
             </NavItem>
           </Nav>
         </Collapse>

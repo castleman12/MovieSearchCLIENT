@@ -1,8 +1,10 @@
+import './Footer.css'
+
 
 const Footer = () => {
   return(
   <div>
-    <p>© MegaCoders, 2020</p>
+    <p id="footer">© MegaCoders, 2020</p>
   </div>
   )
 }

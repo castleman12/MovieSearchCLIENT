@@ -31,17 +31,18 @@ const Home = (props) => {
                 <InputGroup  className="w-25 col-centered">
                     <Input  type="text" name="movieSearch"  placeholder="Search for a movie" onChange={(e) => {props.setSearch(e.target.value)}} />
                     <InputGroupAddon addonType="append" color="secondary">
-                      <Link to="/searchresults"><Button>Search!</Button></Link>
+                      <Link to="/searchresults"><Button id="search">Search!</Button></Link>
                 </InputGroupAddon>
              </InputGroup>
                 </Form>
                 <br />
-            <Button className="mr-5" onClick={() => {authOn()}}>Login or Sign Up!</Button>
+            <Button id="button1" onClick={() => {authOn()}}>Login or Sign Up!</Button>
             {authActive ? <Auth  updateToken={props.updateToken} authOff={authOff} /> : null}
-            {localStorage.getItem('token') ? <Link to="/watchlist"><Button className="ml-5">Watchlist</Button></Link> : null}
+            {localStorage.getItem('token') ? <Link to="/watchlist"><Button id="button2">Watchlist</Button></Link> : null}
               </Container> 
               <br/>
-              <Footer/>
+              
+              <Footer id="footer"/>
             </Jumbotron>
           </div>
         );

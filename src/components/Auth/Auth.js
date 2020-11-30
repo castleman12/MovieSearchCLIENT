@@ -65,9 +65,9 @@ const Auth = (props) => {
   
   return (   
     <Modal isOpen={true}>
-    <ModalHeader> {title()} 
-    < Button className="Close" onClick={props.authOff} >X</Button> </ModalHeader> 
-        <ModalBody>   
+    <ModalHeader id="header"> {title()} 
+    < Button id="close" onClick={props.authOff}>X</Button> </ModalHeader> 
+        <ModalBody id="modal" >   
             <Form onSubmit={HandleSubmit}>    
               <Label htmlFor="email">Email:</Label>  
               <br/>  
@@ -95,10 +95,10 @@ const Auth = (props) => {
               {/* {password.length < 5 ? <p>Password must be minimum 5 characters in length</p> : null} */}
               <br/>
               <br/>
-              { login ? <Button className="Submit" type="submit">Submit User Data</Button> : password.length < 5 ? <p>Password must be minimum 5 characters in length</p> : <Button type="submit" className="Submit">Submit User Data</Button> }
+              { login ? <Button id="Submit" type="submit">Submit User Data</Button> : password.length < 5 ? <p>Password must be minimum 5 characters in length</p> : <Button type="submit" className="Submit">Submit User Data</Button> }
               {/* <Button  type="submit">Submit User Data</Button> */}
               <br/>
-              <Button className="Login" onClick={loginToggle}>Login/Signup Toggle</Button>
+              <Button id="Login" onClick={loginToggle}>Login/Signup Toggle</Button>
               <p>{message}</p> 
               <br/>
             </Form>

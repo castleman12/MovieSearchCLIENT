@@ -84,7 +84,7 @@ const ShowData = (props) => {
             <p><b>About the film:</b> <br/>
                 {movie.overview}</p>
             <br/>
-           <Button type="submit" id="add" onClick={() => {MoreInfo(movie.id)}}>More Info</Button>
+           <Button type="submit" id="moreInfo" onClick={() => {MoreInfo(movie.id)}}>More Info</Button>
            <Button id="add" onClick={() => {addMovie(movie)}}>Add to Watchlist!</Button>
             </div>
         )

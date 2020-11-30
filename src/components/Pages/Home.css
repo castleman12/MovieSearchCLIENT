@@ -14,6 +14,38 @@
     margin-bottom: 1%;
 }
 
-.button {
-    padding: 10% 10% 10% 10%;
+#button1 {
+    margin-left: 115px;
+    margin-right: 115px;
+    background-color: rgba(42,0,128,1);
+    color: white;
+    border: none;
+    transition: 0.3s;
+}
+
+#button2 {
+    margin-left: 115px;
+    margin-right: 115px;
+    background-color: rgb(212, 107, 3);
+    color: white;
+    border: none;
+    transition: 0.3s;
+}
+
+#button1:hover, #button2:hover {
+    opacity: 75%;
+}
+
+#search {
+    margin-top: -1.5px;
+    padding-top: 8px;
+    padding-bottom: 8px;
+    background-color: rgb(212, 107, 3);
+    border: 0;
+    transition: .7s;
+}
+
+#search:hover {
+    background-color: rgba(42,0,128,1);
+    
 }

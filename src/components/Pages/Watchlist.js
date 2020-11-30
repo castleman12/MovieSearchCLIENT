@@ -1,6 +1,7 @@
 import {useState, useEffect} from 'react'
 import {Button, Navbar} from 'reactstrap'
 import Header from '../Navbar'
+import './Watchlist.css'
 const Watchlist = (props) => {
     const [watchList, setWatchList] = useState([]);
 
