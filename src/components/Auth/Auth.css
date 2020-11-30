@@ -31,12 +31,8 @@
   }
   
 #Submit {
-    position: absolute;
-    left: 170px;
-    top: 200px;
     height: 10px;
     padding-bottom: 32px;
-
     color: #f1f1f1;
     background-color: rgba(212, 107, 3, 0.822);
     transition: .5s;
@@ -50,9 +46,6 @@
   }  
 
 #Login {
-    position: absolute;
-    left: 160px;
-    top: 270px;
     height: 30px;
     padding-bottom: 32px;
 
@@ -62,6 +55,11 @@
     border: 0;
   }
   
+
+.buttons{
+  text-align: center;
+}
+
 #Login:hover,
 #Login:focus {
   opacity: 75%;
