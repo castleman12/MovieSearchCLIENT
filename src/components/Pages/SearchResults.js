@@ -1,22 +1,38 @@
 import {useState, useEffect} from 'react';
-import {Button, Form} from 'reactstrap';
+import { Pagination, PaginationItem, PaginationLink, Button, Form } from 'reactstrap';
+import { useAlert } from 'react-alert'
 import './SearchResults.css';
 
 const SearchResults = (props) => {
 
+
     const [searchResults, setSearchResults] = useState([]);
-   
+    const [totalPages, setTotalPages] = useState(1);
+    const [currentPage, setCurrentPage] = useState(1);
+
 
     useEffect(() => {
         async function fetchResults(){
+            let movies = []
             let response = await fetch(`https://api.themoviedb.org/3/search/movie?api_key=82b354b312b56da6907439cf056a2d21&query=${props.search}&page=1`, {
             method: 'GET'
             })
             response = await response.json()
-            setSearchResults(response.results)
+            setTotalPages(response.total_pages)
+                for( let i = 1; i <= response.total_pages; i++){
+                    let response2 = await fetch(`https://api.themoviedb.org/3/search/movie?api_key=82b354b312b56da6907439cf056a2d21&query=${props.search}&page=${i}`, {
+            method: 'GET'
+            })
+            response2 = await response2.json()
+                for(let i=0; i<response2.results.length; i++){
+                    movies.push(response2.results[i])
+                }
+                }
+            setSearchResults(movies);
         }
         fetchResults()
         }, [])
+
 
     if(props.search === ""){
         return(
@@ -33,10 +49,11 @@ const SearchResults = (props) => {
 export default SearchResults;
 
 const ShowData = (props) => {
-    
+    const alert = useAlert()
+    const [message, setMessage] = useState('')
+
     const addMovie = (movie) => {
-        console.log(movie)
-        fetch('http://localhost:3000/watchlist', {
+        fetch('http://localhost:6969/watchlist', {
             method: 'POST',
             body: JSON.stringify({title: movie.title,
             posterPath: movie.poster_path,
@@ -45,10 +62,13 @@ const ShowData = (props) => {
             watched: false}),
             headers: new Headers({
                 'Content-Type': 'application/json',
-                "Authorization": props.token
+                "Authorization": localStorage.getItem('token')
             })
             })
             .then((res) => res.json())
+            .then(res => setMessage(res))
+            .then(alert.show(`${message}`))
+            .catch(err => console.log(err))
         }
     
 
