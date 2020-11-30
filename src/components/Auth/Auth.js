@@ -25,7 +25,7 @@ const Auth = (props) => {
   const HandleSubmit = (event) => {
     event.preventDefault();
         
-    const url = login ? 'http://localhost:3000/user/login' : 'http://localhost:3000/user/register';  
+    const url = login ? 'http://localhost:6969/user/login' : 'http://localhost:6969/user/register';  
     const bodyObj = login ? {user: {
       email: email,
       password: password
@@ -83,7 +83,7 @@ const Auth = (props) => {
                   }} 
               /> 
               <br/>
-              <Label htmlFor="password">Password</Label> 
+              <Label htmlFor="password">Password:</Label> 
               <br/>   
               <Input required
                   type="password" 
@@ -93,18 +93,15 @@ const Auth = (props) => {
                   setPassword(event.target.value);
                   }} 
               /> 
-              {/* Commented out line below, could not center "Submit" button, ternary was forcing it on the left side */}
 
-              {/* {password.length < 5 ? <p>Password must be minimum 5 characters in length</p> : null} */}
-              <br/>
-              <br/>
-              { login ? <Button id="Submit" type="submit">Submit User Data</Button> : password.length < 5 ? <p>Password must be minimum 5 characters in length</p> : <Button type="submit" className="Submit">Submit User Data</Button> }
-              {/* <Button  type="submit">Submit User Data</Button> */}
-              <br/>
-              <Button id="Login" onClick={loginToggle}>Login/Signup Toggle</Button>
-
+              <div className="buttons">
               <p>{message}</p> 
-             
+              { login ? <Button id="Submit" type="submit">Login!</Button> : password.length < 5 ? <p>Password must be minimum 5 characters in length</p> : <Button type="submit" id="Submit">Sign Up!</Button> }
+              <br/>
+              <hr/>
+              { login ? <p>Don't have an account?</p> : <p>Already have an account?</p>}
+              <Button id="Login" onClick={loginToggle}>  { login ? "Switch to Sign Up" : "Switch to Login"}  </Button>
+             </div>
             </Form>
         </ModalBody>
     </Modal>

@@ -1,6 +1,7 @@
 import {useState, useEffect} from 'react'
 import {Button, Navbar} from 'reactstrap'
 import Header from '../Navbar'
+import { useAlert } from 'react-alert'
 import './Watchlist.css'
 import { transitions, positions, Provider as AlertProvider } from 'react-alert'
 
@@ -12,7 +13,7 @@ const Watchlist = (props) => {
 
     useEffect(() => {
       async function fetchResults(){
-            let response = await fetch('http://localhost:3000/watchlist/user', {
+            let response = await fetch('http://localhost:6969/watchlist/user', {
             method: 'GET',
             headers: {
             'Content-Type': 'application/json',
@@ -26,7 +27,7 @@ const Watchlist = (props) => {
         }, [])
             return(
                 <div>
-                    {localStorage.getItem('token') ? <ShowData watchList={watchList} /> : <div><h1>Please login!</h1></div>}
+                    {props.token ? <ShowData watchList={watchList} /> : <div><h1>Please login!</h1></div>}
                 </div>
         ) 
             }
@@ -34,17 +35,20 @@ const Watchlist = (props) => {
 
          const ShowData = (props) => {
             const deleteMovie = (id) => {
-                    fetch(`http://localhost:3000/watchlist/delete/${id}`, {
+                    fetch(`http://localhost:6969/watchlist/delete/${id}`, {
                         method: 'DELETE',
                        headers: {
                            'Content-Type': 'application/json',
                            'Authorization': localStorage.getItem('token')
                        }
                     })
+                    .then((res) => res.json())
+                    .then(res => console.log(res))
+                    .then(window.location.reload())
                 }
 
             const updateMovie = (id) => {
-                fetch(`http://localhost:3000/watchlist/${id}`, {
+                fetch(`http://localhost:6969/watchlist/${id}`, {
                         method: 'PUT',
                         body: JSON.stringify({watched: true}),
                             headers: new Headers({
@@ -53,6 +57,9 @@ const Watchlist = (props) => {
                             })
                             })
                             .then((res) => res.json())
+                            .then(res => console.log(res))
+                            .then(window.location.reload())
+
             }
             
             return (
