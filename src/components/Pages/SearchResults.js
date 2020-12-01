@@ -9,7 +9,7 @@ const SearchResults = (props) => {
 
     const [searchResults, setSearchResults] = useState([]);
     const [totalPages, setTotalPages] = useState(1);
-    const [currentPage, setCurrentPage] = useState(1);
+
 
 
     useEffect(() => {
@@ -52,6 +52,7 @@ export default SearchResults;
 const ShowData = (props) => {
     const alert = useAlert()
     const [message, setMessage] = useState('')
+    const [imdbID, setimdbID ] = useState('')
 
     const addMovie = (movie) => {
         fetch('http://localhost:6969/watchlist', {
@@ -78,21 +79,27 @@ const ShowData = (props) => {
 
   const MoreInfo = (id) => {
         // const [moreInfo, setMoreInfo] = useState([])
-        const [imdbID, setimdbID ] = useState([])
-        useEffect(() => {  
+
                 fetch(`https://api.themoviedb.org/3/movie/${id}/external_ids?api_key=82b354b312b56da6907439cf056a2d21`, {
                 method: 'GET',
                 headers: {
                     'Content-Type': 'application/json'
                 }
-                
-                    })
+                })
                     .then(res => res.json())
-                    .then(data => setimdbID(data))
-                
-            
-            }, [])
-            console.log(imdbID)
+                    .then(data => setimdbID(data.imdb_id))
+                    .then(console.log(imdbID))
+                    .then(
+                        fetch(`http://www.omdbapi.com/?apikey=2fd2161a&?i=${imdbID}`, {
+                            method: 'GET',
+                            headers: {
+                                'Content-Type': 'application/json'
+                            }   
+                            })
+                            .then(res => res.json())
+                            .then(data => console.log(data))
+                    )
+
     }
 
     return (
@@ -140,13 +147,13 @@ const ShowData = (props) => {
 // }
 
 // useEffect(() => {
-//     async function fetchResults(){
-//         let response = await fetch(`http://www.omdbapi.com/?apikey= 2fd2161a&`, {
-//         method: 'GET'
-//         })
-//         response = await response.json()
-//         setSearchResults(response.results)
-//     }
+    // async function fetchResults(){
+    //     let response = await fetch(`http://www.omdbapi.com/?apikey= 2fd2161a&`, {
+    //     method: 'GET'
+    //     })
+    //     response = await response.json()
+    //     setSearchResults(response.results)
+    // }
 //     fetchResults()
 //     }, [])
     
