@@ -36,17 +36,20 @@ const Watchlist = (props) => {
 
          const ShowData = (props) => {
             const deleteMovie = (id) => {
-                    fetch(`${APIURL}/watchlist/delete/${id}`, {
+                async function deletingMovie(id) {
+                    let response = await fetch(`${APIURL}/watchlist/delete/${id}`, {
                         method: 'DELETE',
                        headers: {
                            'Content-Type': 'application/json',
                            'Authorization': localStorage.getItem('token')
                        }
                     })
-                    .then((res) => res.json())
-                    .then(res => console.log(res))
-                    .then(window.location.reload())
+                    response = await response.json()
+                    window.location.reload(true)
                 }
+                deletingMovie(id)
+            }
+
 
             const updateMovie = (id) => {
                 fetch(`${APIURL}/watchlist/${id}`, {
@@ -59,7 +62,7 @@ const Watchlist = (props) => {
                             })
                             .then((res) => res.json())
                             .then(res => console.log(res))
-                            .then(window.location.reload())
+                            .then(window.location.reload(true))
 
             }
             
