@@ -3,6 +3,7 @@ import { Pagination, PaginationItem, PaginationLink, Button, Form } from 'reacts
 import { useAlert } from 'react-alert'
 import './SearchResults.css';
 import noPoster from './PosterNoFound.png'
+import APIURL from '../../helpers/environment'
 
 const SearchResults = (props) => {
 
@@ -55,7 +56,7 @@ const ShowData = (props) => {
     const [imdbID, setimdbID ] = useState('')
 
     const addMovie = (movie) => {
-        fetch('http://localhost:6969/watchlist', {
+        fetch(`${APIURL}/watchlist`, {
             method: 'POST',
             body: JSON.stringify({title: movie.title,
             posterPath: movie.poster_path,

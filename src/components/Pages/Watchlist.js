@@ -5,7 +5,7 @@ import { useAlert } from 'react-alert'
 import './Watchlist.css'
 import { transitions, positions, Provider as AlertProvider } from 'react-alert'
 import noPoster from './PosterNoFound.png'
-
+import APIURL from '../../helpers/environment'
 
 const Watchlist = (props) => {
     const [watchList, setWatchList] = useState([]);
@@ -14,7 +14,7 @@ const Watchlist = (props) => {
 
     useEffect(() => {
       async function fetchResults(){
-            let response = await fetch('http://localhost:6969/watchlist/user', {
+            let response = await fetch(`${APIURL}/watchlist/user`, {
             method: 'GET',
             headers: {
             'Content-Type': 'application/json',
@@ -36,7 +36,7 @@ const Watchlist = (props) => {
 
          const ShowData = (props) => {
             const deleteMovie = (id) => {
-                    fetch(`http://localhost:6969/watchlist/delete/${id}`, {
+                    fetch(`${APIURL}/watchlist/delete/${id}`, {
                         method: 'DELETE',
                        headers: {
                            'Content-Type': 'application/json',
@@ -49,7 +49,7 @@ const Watchlist = (props) => {
                 }
 
             const updateMovie = (id) => {
-                fetch(`http://localhost:6969/watchlist/${id}`, {
+                fetch(`${APIURL}/watchlist/${id}`, {
                         method: 'PUT',
                         body: JSON.stringify({watched: true}),
                             headers: new Headers({
