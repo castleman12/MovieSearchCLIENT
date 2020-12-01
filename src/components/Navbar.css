@@ -15,5 +15,5 @@ background-color: rgba(100,100,100,);
 }
 
 #logout:hover {
-    opacity: 75%;
+    background-color: rgba(27, 20, 112, .7);
 }

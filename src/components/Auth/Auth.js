@@ -2,6 +2,7 @@ import {React, useState} from 'react';
 import {Button, Form, Label, Input, Modal, ModalHeader, ModalBody} from 'reactstrap';
 import "bootstrap/dist/css/bootstrap.css";
 import '../Auth/Auth.css';
+import APIURL from '../../helpers/environment'
 
 const Auth = (props) => {
    
@@ -25,7 +26,7 @@ const Auth = (props) => {
   const HandleSubmit = (event) => {
     event.preventDefault();
         
-    const url = login ? 'http://localhost:6969/user/login' : 'http://localhost:6969/user/register';  
+    const url = login ? `${APIURL}/user/login` : `${APIURL}/user/register`;  
     const bodyObj = login ? {user: {
       email: email,
       password: password

@@ -28,6 +28,10 @@ img {
   height: 50px;
 }
 
+#add:hover {
+  background-color: rgba(27, 20, 112, .7);
+}
+
 #moreInfo{
   width: 100%;
   border: 0;
@@ -40,8 +44,8 @@ p {
   padding: 10px;
 }
 
-#moreInfo:hover, #add:hover {
-  opacity: 75%;
+#moreInfo:hover {
+  background-color: rgba(187, 93, 0, .4);
  
 }
 

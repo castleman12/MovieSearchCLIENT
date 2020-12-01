@@ -1,32 +1,54 @@
-.resultsContainer{
-    width: 50%;
-    border: 2px black solid;
-    background-color: rgba(128, 128, 128, 0.253);
-    border-radius: 5px;
-    margin: 10px auto;
-    max-width: 300px;
-  }
-  
-  img {
-    width: 100%;
-    border-radius: 3px;
-  }
-  
-  #add{
-    width: 100%;
-    border: 0;
-    border-radius: 0;
-    background-color: rgb(27, 20, 112);
-    height: 50px;
-  }
+#resultsContainer{
+  display: block;
+  width: 70%;
+  border: 2px black solid;
+  background-color: rgba(128, 128, 128, 0.253);
+  border-radius: 5px;
+  margin: 10px auto;
+  max-width: 500px;
+
+}
+
+#container {
+  display: inline-flex;
+
+
+}
+
+img {
+  width: 100%;
+  border-radius: 3px;
+}
+
+#add{
+  width: 100%;
+  border: 0;
+  border-radius: 0;
+  background-color: rgb(27, 20, 112);
+  height: 50px;
+}
+
+#add:hover {
+  background-color: rgba(27, 20, 112, .7);
+}
   
 
-  
+#moreInfo{
+  width: 100%;
+  border: 0;
+  border-radius: 0;
+  background-color: rgb(187, 93, 0);
+  height: 50px;
+}
 
-  p {
-    padding: 10px;
-  }
+p {
+  padding: 10px;
+}
 
+#moreInfo:hover {
+  background-color: rgba(187, 93, 0, .4);
+ 
+}
   #watched {
     width: 100%;
     border: 0;
@@ -37,5 +59,12 @@
   }
 
   #watched:hover {
-    opacity: 75%;
+    background-color:rgba(187, 93, 0, .4);
   }
+
+  
+#title {
+  font-size: 3vh;
+
+
+}
