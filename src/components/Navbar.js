@@ -61,8 +61,9 @@ const Header = (props) => {
       </Navbar>
       <div className="showContent">
         <Switch>
-          <Route exact path="/"><Home updateToken={props.updateToken} setSearch={props.setSearch} search={props.search} token={props.token}/></Route>
-          <Route exact path="/home"><Home updateToken={props.updateToken} setSearch={props.setSearch} search={props.search} Link={Link} token={props.token}/></Route>
+
+          <Route exact path="/"><Home  clickLogout={props.clickLogout} updateToken={props.updateToken} setSearch={props.setSearch} search={props.search} token={props.token}/></Route>
+          <Route exact path="/home"><Home clickLogout={props.clickLogout} updateToken={props.updateToken} setSearch={props.setSearch} search={props.search} Link={Link} token={props.token}/></Route>
           <Route exact path="/searchresults"><SearchResults search={props.search} token={props.token}/></Route>
           <Route exact path="/watchlist"><Watchlist token={props.token}/> </Route>
         </Switch>
