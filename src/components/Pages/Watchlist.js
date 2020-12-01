@@ -67,14 +67,16 @@ const Watchlist = (props) => {
                 props.watchList.map((watchlist, index) => {
              
                 return(
-                    
-                    <div key={index} className="resultsContainer">
+                    <div id="container">
+                    <div key={index} id="resultsContainer">
                     {watchlist.posterPath ? <img src={"https://image.tmdb.org/t/p/w500/"+ watchlist.posterPath}/> : <img src={noPoster}/>}
-                    <h1>{watchlist.title}</h1>
+                    <h1 id="title">{watchlist.title}</h1>
                     <p><b>Release Date:</b> <br/> {watchlist.releaseDate}</p>
                     <br/>
+                    <Button type="submit" id="moreInfo" /*onClick={() => {MoreInfo(watchlist.id)}}*/>More Info</Button>
                     {watchlist.watched ? <Button id="watched">Watched!</Button> : <Button id="watched" onClick={() =>{updateMovie(watchlist.id)}}>Watched?</Button>}
                     <Button id="add" onClick={() => {deleteMovie(watchlist.id)}}>Remove from Watchlist!</Button>
+                    </div>
                     </div>
                 )}
                 )
