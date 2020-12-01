@@ -77,12 +77,8 @@ const ShowData = (props) => {
             } else {
                 alert.success(`${response}`)
             }
-
           } 
-        
           addingMovie()
-
-
         }
     
 
