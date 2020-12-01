@@ -98,15 +98,17 @@ const ShowData = (props) => {
     return (
         props.searchResults.map((movie, index) => {
         return(
-            <div key={index} className="resultsContainer">
+            <div id="container">
+            <div key={index} id="resultsContainer">
             {movie.poster_path ? <img src={"https://image.tmdb.org/t/p/w500/"+ movie.poster_path}/> : <img src={noPoster}/>}
-            <h1>{movie.title}</h1>
+            <h1 id="title">{movie.title}</h1>
             <p><b>Release Date:</b> <br/> {movie.release_date}</p>
-            <p><b>About the film:</b> <br/>
-                {movie.overview}</p>
+            {/* <p><b>About the film:</b> <br/>
+                {movie.overview}</p> */}
             <br/>
            <Button type="submit" id="moreInfo" onClick={() => {MoreInfo(movie.id)}}>More Info</Button>
            <Button id="add" onClick={() => {addMovie(movie)}}>Add to Watchlist!</Button>
+            </div>
             </div>
         )
         })

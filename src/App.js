@@ -1,6 +1,7 @@
 import {Switch, Route} from 'react'
 import Home from './components/Pages/Home'
 import Header from './components/Navbar'
+import Footer from './components/Footer'
 import './App.css';
 import {useState,useEffect} from 'react';
 import SearchResults from './components/Pages/SearchResults';
@@ -34,7 +35,7 @@ function App() {
       <Router>
 
         <Header clickLogout={clearToken} updateToken={updateToken} token={token} setSearch={setSearch} search={search}/>
-
+        <Footer id="footer"/>
       </Router>
 
     </div>

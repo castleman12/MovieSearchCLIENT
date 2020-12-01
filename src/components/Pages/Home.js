@@ -42,7 +42,7 @@ const Home = (props) => {
               </Container> 
               <br/>
               
-              <Footer id="footer"/>
+              
             </Jumbotron>
           </div>
         );
