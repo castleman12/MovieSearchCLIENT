@@ -64,7 +64,7 @@ const Header = (props) => {
 
           <Route exact path="/"><Home  clickLogout={props.clickLogout} updateToken={props.updateToken} setSearch={props.setSearch} search={props.search} token={props.token}/></Route>
           <Route exact path="/home"><Home clickLogout={props.clickLogout} updateToken={props.updateToken} setSearch={props.setSearch} search={props.search} Link={Link} token={props.token}/></Route>
-          <Route exact path="/searchresults"><SearchResults search={props.search} token={props.token}/></Route>
+          <Route exact path="/searchresults"><SearchResults search={props.search} token={props.token} authOn={authOn} authOff={authOff}/></Route>
           <Route exact path="/watchlist"><Watchlist token={props.token}/> </Route>
         </Switch>
       </div>

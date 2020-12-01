@@ -51,17 +51,8 @@ const ShowData = (props) => {
     const alert = useAlert()
     const [imdbID, setimdbID ] = useState('')
 
-    const [authActive, setAuthActive] = useState(false);
 
 
-    const authOn = () =>{
-      setAuthActive(true);
-    }
-  
-    const authOff = () => {
-      setAuthActive(false);
-    }
-  
 
     const addMovie = (movie) => {
 
@@ -133,8 +124,7 @@ const ShowData = (props) => {
             <p><b>Release Date:</b> <br/> {movie.release_date}</p>
             <br/>
            <Button type="submit" id="moreInfo" onClick={() => {MoreInfo(movie.id)}}>More Info</Button>
-            {localStorage.getItem('token') ?<Button id="add" onClick={() => {addMovie(movie)}}>Add to Watchlist!</Button> : <Button id="add" onClick={() => {authOn()}}>Login or Sign Up!</Button>  }
-            {authActive ? <Auth  updateToken={props.updateToken} authOff={authOff} /> : null}
+            {localStorage.getItem('token') ?<Button id="add" onClick={() => {addMovie(movie)}}>Add to Watchlist!</Button> : <Button id="add" href="/">Make an Account!</Button>  } 
             </div>
             </div>
         )
