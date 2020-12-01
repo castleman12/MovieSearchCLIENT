@@ -1,10 +1,18 @@
-.resultsContainer{
-  width: 50%;
+#resultsContainer{
+  display: block;
+  width: 70%;
   border: 2px black solid;
   background-color: rgba(128, 128, 128, 0.253);
   border-radius: 5px;
   margin: 10px auto;
-  max-width: 300px;
+  max-width: 500px;
+
+}
+
+#container {
+  display: inline-flex;
+
+
 }
 
 img {
@@ -35,4 +43,10 @@ p {
 #moreInfo:hover, #add:hover {
   opacity: 75%;
  
+}
+
+#title {
+  font-size: 3vh;
+
+
 }
