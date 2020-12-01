@@ -19,8 +19,21 @@ import {
 import Watchlist from './Pages/Watchlist'
 import './Navbar.css'
 import logo from '../assets/MainLogo.png'
+import Auth from './Auth/Auth'
 
 const Header = (props) => {
+
+  const [authActive, setAuthActive] = useState(false);
+
+
+  const authOn = () =>{
+    setAuthActive(true);
+  }
+
+  const authOff = () => {
+    setAuthActive(false);
+  }
+
 
   const [isOpen, setIsOpen] = useState(false);
 
@@ -40,7 +53,8 @@ const Header = (props) => {
             {localStorage.getItem('token') ?  <NavLink href="/watchlist">Watchlist</NavLink> : null}
             </NavItem>
             <NavItem>
-            {localStorage.getItem('token') ?  <Button onClick={props.clickLogout} id="logout">Logout</Button> : null}
+            {localStorage.getItem('token') ?  <Button onClick={props.clickLogout} id="logout">Logout</Button> : <Button id="button1" onClick={() => {authOn()}}>Login or Sign Up!</Button>}
+            {authActive ? <Auth  updateToken={props.updateToken} authOff={authOff} /> : null}
             </NavItem>
           </Nav>
         </Collapse>

@@ -4,6 +4,7 @@ import { useAlert } from 'react-alert'
 import './SearchResults.css';
 import noPoster from './PosterNoFound.png'
 import APIURL from '../../helpers/environment'
+import Auth from '../Auth/Auth'
 
 const SearchResults = (props) => {
 
@@ -54,6 +55,18 @@ const ShowData = (props) => {
     const alert = useAlert()
     const [message, setMessage] = useState('')
     const [imdbID, setimdbID ] = useState('')
+
+    const [authActive, setAuthActive] = useState(false);
+
+
+    const authOn = () =>{
+      setAuthActive(true);
+    }
+  
+    const authOff = () => {
+      setAuthActive(false);
+    }
+  
 
     const addMovie = (movie) => {
         fetch(`${APIURL}/watchlist`, {
@@ -115,7 +128,8 @@ const ShowData = (props) => {
                 {movie.overview}</p> */}
             <br/>
            <Button type="submit" id="moreInfo" onClick={() => {MoreInfo(movie.id)}}>More Info</Button>
-           <Button id="add" onClick={() => {addMovie(movie)}}>Add to Watchlist!</Button>
+            {localStorage.getItem('token') ?<Button id="add" onClick={() => {addMovie(movie)}}>Add to Watchlist!</Button> : <Button id="add" onClick={() => {authOn()}}>Login or Sign Up!</Button>  }
+            {authActive ? <Auth  updateToken={props.updateToken} authOff={authOff} /> : null}
             </div>
             </div>
         )
