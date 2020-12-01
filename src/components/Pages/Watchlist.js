@@ -69,7 +69,7 @@ const Watchlist = (props) => {
                 return(
                     
                     <div key={index} className="resultsContainer">
-                    {watchlist.poster_path ? <img src={"https://image.tmdb.org/t/p/w500/"+ watchlist.poster_path}/> : <img src={noPoster}/>}
+                    {watchlist.posterPath ? <img src={"https://image.tmdb.org/t/p/w500/"+ watchlist.posterPath}/> : <img src={noPoster}/>}
                     <h1>{watchlist.title}</h1>
                     <p><b>Release Date:</b> <br/> {watchlist.releaseDate}</p>
                     <br/>
