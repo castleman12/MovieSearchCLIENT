@@ -23,6 +23,10 @@
     transition: 0.3s;
 }
 
+#button1:hover {
+    background-color: rgba(42,0,128,.7); 
+}
+
 #button2 {
     margin-left: 115px;
     margin-right: 115px;
@@ -32,8 +36,8 @@
     transition: 0.3s;
 }
 
-#button1:hover, #button2:hover {
-    opacity: 75%;
+#button2:hover {
+    background-color: rgba(212, 107, 3, .7);
 }
 
 #search {
