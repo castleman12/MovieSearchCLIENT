@@ -24,7 +24,7 @@
 }
 
 #button1:hover {
-    background-color: rgba(42,0,128,.7); 
+    background-color: rgba(42,0,128,.4); 
 }
 
 #button2 {
@@ -37,7 +37,7 @@
 }
 
 #button2:hover {
-    background-color: rgba(212, 107, 3, .7);
+    background-color: rgba(212, 107, 3, .4);
 }
 
 #search {
