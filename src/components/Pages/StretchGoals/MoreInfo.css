@@ -1,6 +1,22 @@
+h3 {
+text-align: center;
+    font-size: 50px;
+    margin-left: 120px;
+}
+
 #info {
-    display: inline-flex;
-    font-size: 15px;
-    margin-left: -40px;
-    margin-top: -50px;
+display: flex;
+text-align: center;
+    font-size: 12px;
+}
+
+#titleInfo {
+text-align: center;
+padding-left: 50px;
+justify-content: space-between;
+}
+
+#bodyInfo {
+    margin-right: 50px;
+    text-align: center;
 }

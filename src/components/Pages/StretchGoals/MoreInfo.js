@@ -25,18 +25,30 @@ const MoreInfo = (props) => {
 
   return (   
     <Modal isOpen={true}>
+  
     <ModalHeader id="header">
+      <br/>
        <h3>{movieInfo.Title}</h3>
-      <ul id="info">          <dt>Metascore:</dt>
-              <dd>{movieInfo.Metascore}</dd>
+      <ul id="info">
+              <div id="titleInfo">
+              <dt>Metascore:</dt>
+        
+              <dd >{movieInfo.Metascore}</dd>
+              </div>
+              <div id="titleInfo">
               <dt>Runtime:</dt>
+             
               <dd>{movieInfo.Runtime}</dd>
+              </div>
+              <div id="titleInfo">
               <dt>Rated:</dt>
-              <dd>{movieInfo.Rated}</dd></ul>
+            
+              <dd>{movieInfo.Rated}</dd> </div></ul>
+             
     < Button id="close" onClick={props.infoOff}>X</Button>
      </ModalHeader> 
         <ModalBody id="modal" >   
-            <ul>
+            <ul id="bodyInfo">
     
               <dt>Director:</dt>
               <dd>{movieInfo.Director}</dd>
