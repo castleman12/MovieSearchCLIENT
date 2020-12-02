@@ -47,7 +47,7 @@ const SearchResults = (props) => {
 
     if(props.search === ""){
         return(
-        <h3>No search term entered Search Again?</h3>
+        <h3 id="noSearch">No search term entered. <a href="/" id="homeLink">Search Again?</a></h3>
         )
     } else {
         return(
@@ -108,7 +108,7 @@ const ShowData = (props) => {
             <p><b>Release Date:</b> <br/> {movie.release_date}</p>
             <br/>
 
-           <Button type="submit" id="moreInfo" onClick={() => {
+           <Button type="submit" id="moreInfo2" onClick={() => {
                props.infoOn()
                props.setMovieId(movie.id)}}>More Info</Button>
 

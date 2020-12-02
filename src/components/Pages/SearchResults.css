@@ -32,7 +32,7 @@ img {
   background-color: rgba(27, 20, 112, .7);
 }
 
-#moreInfo{
+#moreInfo2{
   width: 100%;
   border: 0;
   border-radius: 0;
@@ -44,7 +44,7 @@ p {
   padding: 10px;
 }
 
-#moreInfo:hover {
+#moreInfo2:hover {
   background-color: rgba(187, 93, 0, .4);
  
 }
@@ -53,4 +53,17 @@ p {
   font-size: 3vh;
 
 
+}
+
+#noSearch {
+  margin-left: 0;
+}
+
+#homeLink {
+  text-decoration: none;
+  
+}
+
+#homeLink:hover {
+  text-decoration: none;
 }
