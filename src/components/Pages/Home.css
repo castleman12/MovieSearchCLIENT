@@ -1,4 +1,6 @@
 #jumbotron {
+    display: flex;
+    justify-content: space-between;
     background-color: rgba(199, 192, 192, 0);
     margin-top: 10%;
 }
@@ -8,14 +10,16 @@
     float: none;
 }
 
-.logo {
-    width: 50%;
-    margin-left: 9%;
+#logo2 {
+
+margin-left: 5%;
+    width: 50vw;
+  
     margin-bottom: 1%;
 }
 
 #button1 {
-   justify-content: center;
+    display: flex;
     background-color: rgba(42,0,128,1);
     color: white;
     border: none;
@@ -27,6 +31,7 @@
 }
 
 #button2 {
+    display: inherit;
     margin-left: 115px;
     margin-right: 115px;
     background-color: rgb(212, 107, 3);
@@ -40,7 +45,7 @@
 }
 
 #search {
-
+    display: inherit;
     margin-top: -1.5;
     padding-top: 8px;
     padding-bottom: 8px;
@@ -57,11 +62,47 @@
 
 #searchBar {
     height: 39px;
-    margin-top: -1px;
+ 
   }
+
 
  @media screen and (max-width: 800px)  {
       #search {
           display: none;
       }
   }
+
+@media screen  and (max-width: 800px) {
+    #logo2 {
+        min-width: 55vw;
+    }
+}
+  #button3 {
+    margin-right: 100px;
+    background-color: rgba(42,0,128,1);
+    color: white;
+    border: none;
+    transition: 0.3s;
+}
+
+#button3:hover {
+    background-color: rgba(42,0,128,.4); 
+}
+
+#logout2 {
+    background-color: rgb(27, 20, 112);
+    border: 0;
+    
+    margin-top: 2px;
+    transition: .3s;
+}
+
+#logout2:hover {
+    background-color: rgba(27, 20, 112, .7);
+}
+
+#buttons {
+    margin-left: 100px;
+    display: flex;
+    justify-content: center;
+}

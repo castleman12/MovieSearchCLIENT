@@ -22,11 +22,11 @@ const Home = (props) => {
 
 
         return (
-          <div>
+          <div id="jumbo">
             <Jumbotron id="jumbotron" fluid >
               <Container fluid>
                 
-                <img class="display-3 logo" src={logo} />
+                <img class="display-3 logo" id="logo2" src={logo} />
                 <Form>
                 <InputGroup  className="w-25 col-centered">
                     <Input  type="text" name="movieSearch"  placeholder="Search for a movie" onChange={(e) => {props.setSearch(e.target.value)}} id="searchBar" />
@@ -36,9 +36,11 @@ const Home = (props) => {
              </InputGroup>
                 </Form>
                 <br />
-        {localStorage.getItem('token') ?<Button onClick={props.clickLogout} id="logout">Logout</Button>  : <Button id="button1" onClick={() => {authOn()}}>Login or Sign Up!</Button>} 
+             <div id="buttons">
+        {localStorage.getItem('token') ?<Button onClick={props.clickLogout} id="logout2">Logout</Button>  : <Button id="button3" onClick={() => {authOn()}}>Login or Sign Up!</Button>} 
             {authActive ? <Auth  updateToken={props.updateToken} authOff={authOff} /> : null}
             {localStorage.getItem('token') ? <Link to="/watchlist"><Button id="button2">Watchlist</Button></Link> : null}
+     </div>
               </Container> 
               <br/>
               
