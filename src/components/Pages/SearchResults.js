@@ -5,10 +5,22 @@ import './SearchResults.css';
 import noPoster from './PosterNoFound.png'
 import APIURL from '../../helpers/environment'
 import Auth from '../Auth/Auth'
+import MoreInfo from './StretchGoals/MoreInfo'
 
 const SearchResults = (props) => {
 
     const [searchResults, setSearchResults] = useState([]);
+    const [movieId, setMovieId] = useState('');
+    const [infoActive, setInfoActive] = useState(false);
+
+    const infoOn = () =>{
+      setInfoActive(true);
+    }
+    
+    const infoOff = () => {
+      setInfoActive(false);
+    }
+
 
 
     useEffect(() => {
@@ -40,7 +52,8 @@ const SearchResults = (props) => {
     } else {
         return(
             <div>
-                <ShowData searchResults={searchResults} token={props.token} />
+                <ShowData searchResults={searchResults} token={props.token} infoOn={infoOn} setMovieId={setMovieId}/>
+                {infoActive ? <MoreInfo  updateToken={props.updateToken} infoOff={infoOff} movieId={movieId}/> : null}
             </div>
     )}
 }
@@ -49,9 +62,6 @@ export default SearchResults;
 
 const ShowData = (props) => {
     const alert = useAlert()
-    const [imdbID, setimdbID ] = useState('')
-
-
 
 
     const addMovie = (movie) => {
@@ -90,31 +100,31 @@ const ShowData = (props) => {
 
 
 
-  const MoreInfo = (id) => {
-        // const [moreInfo, setMoreInfo] = useState([])
+//   const MoreInfo = (id) => {
+//         // const [moreInfo, setMoreInfo] = useState([])
 
-        async function fetchResults(){
-            let imdbID = ""
-            let response = await fetch(`https://api.themoviedb.org/3/movie/${id}/external_ids?api_key=82b354b312b56da6907439cf056a2d21`, {
-                method: 'GET',
-                headers: {
-                    'Content-Type': 'application/json'
-                }
-                })
-            response = await response.json()
-            imdbID = response.imdb_id
-            console.log(imdbID);
-            let response2 = await fetch(`http://www.omdbapi.com/?apikey=2fd2161a&i=${imdbID}`, {
-                method: 'GET',
-                headers: {
-                    'Content-Type': 'application/json'
-                }   
-                })
-            response2 = await response2.json()
-            console.log(response2)
-        }
-        fetchResults();
-    }
+//         async function fetchResults(){
+//             let imdbID = ""
+//             let response = await fetch(`https://api.themoviedb.org/3/movie/${id}/external_ids?api_key=82b354b312b56da6907439cf056a2d21`, {
+//                 method: 'GET',
+//                 headers: {
+//                     'Content-Type': 'application/json'
+//                 }
+//                 })
+//             response = await response.json()
+//             imdbID = response.imdb_id
+//             console.log(imdbID);
+//             let response2 = await fetch(`http://www.omdbapi.com/?apikey=2fd2161a&i=${imdbID}`, {
+//                 method: 'GET',
+//                 headers: {
+//                     'Content-Type': 'application/json'
+//                 }   
+//                 })
+//             response2 = await response2.json()
+//             console.log(response2)
+//         }
+//         fetchResults();
+//     }
 
 
     return (
@@ -126,8 +136,13 @@ const ShowData = (props) => {
             <h1 id="title">{movie.title}</h1>
             <p><b>Release Date:</b> <br/> {movie.release_date}</p>
             <br/>
-           <Button type="submit" id="moreInfo" onClick={() => {MoreInfo(movie.id)}}>More Info</Button>
+
+           <Button type="submit" id="moreInfo" onClick={() => {
+               props.infoOn()
+               props.setMovieId(movie.id)}}>More Info</Button>
+
             {localStorage.getItem('token') ?<Button id="add" onClick={() => {addMovie(movie)}}>Add to Watchlist!</Button> : <Button id="add" href="/">Make an Account!</Button>  } 
+
             </div>
             </div>
         )
@@ -135,40 +150,3 @@ const ShowData = (props) => {
     )
     
 }  
-
-// const MoreInfo = (id) => {
-
-// // const [moreInfo, setMoreInfo] = useState([])
-
-// const [imdbID, setimdbID ] = useState([])
-
-// useEffect(() => {
-
-//        fetch(`https://api.themoviedb.org/3/movie/${id}/external_ids?api_key=82b354b312b56da6907439cf056a2d21`, {
-//         method: 'GET',
-//         headers: {
-//             'Content-Type': 'application/json'
-//              }
-//         })
-//         .then(res => res.json())
-//         .then(data => setimdbID(data.imdb_id))
-//         .then(console.log(imdbID))
-//     }
-   
-   
-//     , [])
-// }
-
-// useEffect(() => {
-    // async function fetchResults(){
-    //     let response = await fetch(`http://www.omdbapi.com/?apikey= 2fd2161a&`, {
-    //     method: 'GET'
-    //     })
-    //     response = await response.json()
-    //     setSearchResults(response.results)
-    // }
-//     fetchResults()
-//     }, [])
-    
-// }
-
