@@ -1,14 +1,22 @@
 import {useState, useEffect} from 'react'
-import {Button, Navbar} from 'reactstrap'
-import Header from '../Navbar'
-import { useAlert } from 'react-alert'
+import {Button } from 'reactstrap'
 import './Watchlist.css'
-import { transitions, positions, Provider as AlertProvider } from 'react-alert'
 import noPoster from './PosterNoFound.png'
 import APIURL from '../../helpers/environment'
+import MoreInfo from './StretchGoals/MoreInfo'
 
 const Watchlist = (props) => {
     const [watchList, setWatchList] = useState([]);
+    const [movieId, setMovieId] = useState('');
+    const [infoActive, setInfoActive] = useState(false);
+
+    const infoOn = () =>{
+      setInfoActive(true);
+    }
+    
+    const infoOff = () => {
+      setInfoActive(false);
+    }
 
     
 
@@ -28,7 +36,8 @@ const Watchlist = (props) => {
         }, [])
             return(
                 <div>
-                    {props.token ? <ShowData watchList={watchList} /> : <div><h1>Please login!</h1></div>}
+                    {props.token ? <ShowData watchList={watchList} setMovieId={setMovieId} infoOn={infoOn}/> : <div><h1>Please login!</h1></div>}
+                    {infoActive ? <MoreInfo  infoOff={infoOff} movieId={movieId} /> : null}
                 </div>
         ) 
             }
@@ -76,7 +85,9 @@ const Watchlist = (props) => {
                     <h1 id="title">{watchlist.title}</h1>
                     <p><b>Release Date:</b> <br/> {watchlist.releaseDate}</p>
                     <br/>
-                    <Button type="submit" id="moreInfo" /*onClick={() => {MoreInfo(watchlist.id)}}*/>More Info</Button>
+                    <Button type="submit" id="moreInfo" onClick={() => {
+                    props.infoOn()
+                    props.setMovieId(watchlist.movieDBid)}}>More Info</Button>
                     {watchlist.watched ? <Button id="watched">Watched!</Button> : <Button id="watched" onClick={() =>{updateMovie(watchlist.id)}}>Watched?</Button>}
                     <Button id="add" onClick={() => {deleteMovie(watchlist.id)}}>Remove from Watchlist!</Button>
                     </div>
