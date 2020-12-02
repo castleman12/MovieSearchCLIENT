@@ -1,4 +1,4 @@
-import {useState, useEffect} from 'react';
+import {useState, useEffect, Link} from 'react';
 import { Button, Form } from 'reactstrap';
 import { useAlert } from 'react-alert'
 import './SearchResults.css';
@@ -47,15 +47,22 @@ const SearchResults = (props) => {
 
     if(props.search === ""){
         return(
-        <h3 id="noSearch">No search term entered. <a href="/" id="homeLink">Search Again?</a></h3>
+        <h3>No search term entered! <br/> <br/> <Button style={{background: "rgb(27, 20, 112)", border: "0px"}} href="/">Search Again?</Button></h3>
+
         )
-    } else {
+    } else if (searchResults.length > 0){
         return(
             <div>
                 <ShowData searchResults={searchResults} token={props.token} infoOn={infoOn} setMovieId={setMovieId}/>
                 {infoActive ? <MoreInfo  infoOff={infoOff} movieId={movieId}/> : null}
             </div>
-    )}
+    )} else {
+        return(
+            <div>
+                <h3>No results for {props.search}! <br/> <br/> <Button style={{background: "rgb(27, 20, 112)", border: "0px"}} href="/">Search Again?</Button></h3>
+            </div>
+        )
+    }
 }
 
 export default SearchResults;
@@ -103,7 +110,7 @@ const ShowData = (props) => {
         return(
             <div id="container">
             <div key={index} id="resultsContainer">
-            {movie.poster_path ? <img src={"https://image.tmdb.org/t/p/w500/"+ movie.poster_path}/> : <img src={noPoster}/>}
+            {movie.poster_path ? <img alt={`poster for ${movie.title}`} src={"https://image.tmdb.org/t/p/w500/"+ movie.poster_path}/> : <img alt="no poster found"src={noPoster}/>}
             <h1 id="title">{movie.title}</h1>
             <p><b>Release Date:</b> <br/> {movie.release_date}</p>
             <br/>

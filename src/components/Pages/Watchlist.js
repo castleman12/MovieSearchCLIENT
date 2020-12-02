@@ -34,12 +34,32 @@ const Watchlist = (props) => {
       }
             fetchResults()
         }, [])
+
+
+        if(props.token){
+            if(watchList.length < 1){
+                return(
+                    <div>
+                        <h3>There are no movies on your Watchlist!</h3>
+                        <br/>
+                        <br/>
+                        <Button style={{background: "rgb(27, 20, 112)", border: "0px"}} href="/">Search for a Movie!</Button>
+                    </div>
+                )
+            } else {
+                return(
+                    <div>
+                        <ShowData watchList={watchList} setMovieId={setMovieId} infoOn={infoOn}/>
+                        {infoActive ? <MoreInfo  infoOff={infoOff} movieId={movieId} /> : null}
+                    </div>
+            )
+            }
+        } else {
             return(
                 <div>
-                    {props.token ? <ShowData watchList={watchList} setMovieId={setMovieId} infoOn={infoOn}/> : <div><h1>Please login!</h1></div>}
-                    {infoActive ? <MoreInfo  infoOff={infoOff} movieId={movieId} /> : null}
+                    <div> <h3>No user logged in!</h3> <br/> <br/> <Button style={{background: "rgb(27, 20, 112)", border: "0px"}} href="/">Please Login or Sign Up!</Button></div>
                 </div>
-        ) 
+        ) }
             }
     export default Watchlist
 
@@ -81,7 +101,7 @@ const Watchlist = (props) => {
                 return(
                     <div id="container">
                     <div key={index} id="resultsContainer">
-                    {watchlist.posterPath ? <img src={"https://image.tmdb.org/t/p/w500/"+ watchlist.posterPath}/> : <img src={noPoster}/>}
+                    {watchlist.posterPath ? <img alt={`poster for ${watchlist.title}`} src={"https://image.tmdb.org/t/p/w500/"+ watchlist.posterPath}/> : <img alt='no poster found' src={noPoster}/>}
                     <h1 id="title">{watchlist.title}</h1>
                     <p><b>Release Date:</b> <br/> {watchlist.releaseDate}</p>
                     <br/>
