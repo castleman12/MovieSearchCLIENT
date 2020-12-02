@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import {Button, Modal, ModalHeader, ModalBody} from 'reactstrap';
+import './MoreInfo.css'
 
 const MoreInfo = (props) => {
   const [movieInfo, setMovieInfo] = useState({});
@@ -12,7 +13,7 @@ const MoreInfo = (props) => {
             })
         response = await response.json()
         imdbID = response.imdb_id
-        let response2 = await fetch(`http://www.omdbapi.com/?apikey=2fd2161a&i=${imdbID}`, {
+        let response2 = await fetch(`https://www.omdbapi.com/?apikey=2fd2161a&i=${imdbID}`, {
             method: 'GET'
             })
         response2 = await response2.json()
@@ -24,16 +25,19 @@ const MoreInfo = (props) => {
 
   return (   
     <Modal isOpen={true}>
-    <ModalHeader id="header"> <h3>{movieInfo.Title}</h3>
-    < Button id="close" onClick={props.infoOff}>X</Button> </ModalHeader> 
-        <ModalBody id="modal" >   
-            <ul>
-              <dt>Metascore:</dt>
+    <ModalHeader id="header">
+       <h3>{movieInfo.Title}</h3>
+      <ul id="info">          <dt>Metascore:</dt>
               <dd>{movieInfo.Metascore}</dd>
               <dt>Runtime:</dt>
               <dd>{movieInfo.Runtime}</dd>
               <dt>Rated:</dt>
-              <dd>{movieInfo.Rated}</dd>
+              <dd>{movieInfo.Rated}</dd></ul>
+    < Button id="close" onClick={props.infoOff}>X</Button>
+     </ModalHeader> 
+        <ModalBody id="modal" >   
+            <ul>
+    
               <dt>Director:</dt>
               <dd>{movieInfo.Director}</dd>
               <dt>Writer:</dt>
