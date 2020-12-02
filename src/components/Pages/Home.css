@@ -40,7 +40,8 @@
 }
 
 #search {
-    margin-top: -1.5px;
+
+    margin-top: -1.5;
     padding-top: 8px;
     padding-bottom: 8px;
     background-color: rgb(212, 107, 3);
@@ -57,4 +58,10 @@
 #searchBar {
     height: 39px;
     margin-top: -1px;
+  }
+
+ @media screen and (max-width: 800px)  {
+      #search {
+          display: none;
+      }
   }
