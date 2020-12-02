@@ -40,15 +40,28 @@
 }
 
 #search {
-    margin-top: -1.5px;
+
+    margin-top: -1.5;
     padding-top: 8px;
     padding-bottom: 8px;
     background-color: rgb(212, 107, 3);
     border: 0;
     transition: .7s;
+    border-radius: 0;
 }
 
 #search:hover {
     background-color: rgba(42,0,128,1);
     
 }
+
+#searchBar {
+    height: 39px;
+    margin-top: -1px;
+  }
+
+ @media screen and (max-width: 800px)  {
+      #search {
+          display: none;
+      }
+  }

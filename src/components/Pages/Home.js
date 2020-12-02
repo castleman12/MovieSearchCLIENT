@@ -29,7 +29,7 @@ const Home = (props) => {
                 <img class="display-3 logo" src={logo} />
                 <Form>
                 <InputGroup  className="w-25 col-centered">
-                    <Input  type="text" name="movieSearch"  placeholder="Search for a movie" onChange={(e) => {props.setSearch(e.target.value)}} />
+                    <Input  type="text" name="movieSearch"  placeholder="Search for a movie" onChange={(e) => {props.setSearch(e.target.value)}} id="searchBar" />
                     <InputGroupAddon addonType="append" color="secondary">
                       <Link to="/searchresults"><Button id="search">Search!</Button></Link>
                 </InputGroupAddon>

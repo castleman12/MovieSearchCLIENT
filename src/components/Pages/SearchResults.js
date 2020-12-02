@@ -136,11 +136,12 @@ const ShowData = (props) => {
             <h1 id="title">{movie.title}</h1>
             <p><b>Release Date:</b> <br/> {movie.release_date}</p>
             <br/>
+
            <Button type="submit" id="moreInfo" onClick={() => {
                props.infoOn()
                props.setMovieId(movie.id)}}>More Info</Button>
-            {localStorage.getItem('token') ?<Button id="add" onClick={() => {addMovie(movie)}}>Add to Watchlist!</Button> : <Button id="add">Login or Sign Up!</Button>  }
-            {/* {authActive ? <Auth  updateToken={props.updateToken} authOff={authOff} /> : null} */}
+
+            {localStorage.getItem('token') ?<Button id="add" onClick={() => {addMovie(movie)}}>Add to Watchlist!</Button> : <Button id="add" href="/">Make an Account!</Button>  } 
 
             </div>
             </div>
