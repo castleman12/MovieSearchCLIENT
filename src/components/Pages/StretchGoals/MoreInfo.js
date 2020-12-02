@@ -8,18 +8,12 @@ const MoreInfo = (props) => {
     async function fetchResults(){
         let imdbID = ""
         let response = await fetch(`https://api.themoviedb.org/3/movie/${props.movieId}/external_ids?api_key=82b354b312b56da6907439cf056a2d21`, {
-            method: 'GET',
-            headers: {
-                'Content-Type': 'application/json'
-            }
+            method: 'GET'
             })
         response = await response.json()
         imdbID = response.imdb_id
         let response2 = await fetch(`http://www.omdbapi.com/?apikey=2fd2161a&i=${imdbID}`, {
-            method: 'GET',
-            headers: {
-                'Content-Type': 'application/json'
-            }   
+            method: 'GET'
             })
         response2 = await response2.json()
         console.log(response2)
